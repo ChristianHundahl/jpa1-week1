@@ -20,8 +20,8 @@ public class SetupData implements CommandLineRunner {
         customerRepository.save(new Customer("Hanne", "Olsen", "a1@b.dk"));
 
         Customer c3 = new Customer("Hanne", "Olsen", "a2@b.dk");
-        System.out.println(c3.getId());
-        customerRepository.save(c3); //Managed objektet håndteret at Entity framework
-        System.out.println(c3.getId());
+        //System.out.println(c3.getId());
+        customerRepository.save(c3);
+        //System.out.println(c3.getId());//Managed objektet håndteret at Entity framework
     }
 }
