@@ -1,5 +1,7 @@
 package com.example.jpa1week1.entity;
 
+import com.example.jpa1week1.dto.CustomerResponseDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -34,10 +36,27 @@ public class Customer {
     @UpdateTimestamp
     private LocalDateTime dateEdited;
 
+    @Column(name = "hemmelighed1")
+    //@JsonIgnore - can be used to ignore a field when returned as JSON
+    private String secret1;
+
+    @Column(name = "hemmelighed2")
+    private String secret2;
+
+    public Customer(CustomerResponseDto body) {
+        this.firstName = body.getFirsName();
+        this.lastName = body.getLastName();
+        this.email = body.getEmail();
+        this.secret1 = "Hemmeligt1";
+        this.secret2 = "Hemmeligt2";
+    }
+
     public Customer(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.secret1 = "Hemmeligt1";
+        this.secret2 = "Hemmeligt2";
     }
 
     public Customer() {}
@@ -64,6 +83,14 @@ public class Customer {
 
     public LocalDateTime getDateEdited() {
         return dateEdited;
+    }
+
+    public String getSecret1() {
+        return secret1;
+    }
+
+    public String getSecret2() {
+        return secret2;
     }
 
     @Override
